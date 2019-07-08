@@ -1,7 +1,9 @@
-# Python program for implementation of json quick Sort 
+# Python program for implementation of JSON quick Sort using hoares partition scheme
 import json
 import sys
 
+# Sort the elements around the pivot point
+# Using Hoare's partition scheme
 def partition(myList, start, end):
     pivot = myList[start]["score"]
     left = start + 1
@@ -27,7 +29,6 @@ def partition(myList, start, end):
 # arr[] --> Array to be sorted, 
 # low  --> Starting index, 
 #high  --> Ending index
-
 def quickSort(arr,low,high):
     if (low < high): 
         #pi is partitioning index, arr[p] is now at right place
@@ -38,6 +39,8 @@ def quickSort(arr,low,high):
         quickSort(arr, low, pi - 1); 
         quickSort(arr, pi + 1, high); 
 
+# Read JSON from given file
+# Handle exceptions for format and FileNotFound
 def getInput(filename):
     try:
         json_list = []
@@ -54,10 +57,12 @@ def getInput(filename):
         print('I got a FileInputError - reason "%s"' % str(e))
         exit(1)
 
-
+# Gets filename from command args
 arr = getInput(sys.argv[1])
 n = len(arr)
 quickSort(arr,0,n-1)
+# Gets the number of highest numbers to print out
 last = int(sys.argv[2])
+# Print out the N highest numbers and exit with code 0
 print(arr[:last])
 exit(0)
